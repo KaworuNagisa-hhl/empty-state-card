@@ -7,6 +7,7 @@ import {
   SWIFT_UI_TEXT_PRIMARY,
   SWIFT_UI_TEXT_SECONDARY,
   swiftUIColorWithOpacity,
+  SwiftUIComponentConfig,
   SwiftUITone
 } from 'theme'
 import { SwiftUIPanel } from 'panel'
@@ -14,6 +15,7 @@ import { SwiftUIIconBadge } from 'icon-badge'
 
 @Component
 export struct SwiftUIEmptyStateCard {
+  @Prop config: SwiftUIComponentConfig = new SwiftUIComponentConfig()
   @Prop title: ResourceStr = ''
   @Prop message: ResourceStr = ''
   @Prop icon: ResourceStr = ''
@@ -35,23 +37,67 @@ export struct SwiftUIEmptyStateCard {
   }
   @BuilderParam actionBuilder?: () => void
 
+  private resolvedTone(): SwiftUITone {
+    return this.config.tone === undefined ? this.tone : this.config.tone
+  }
+
+  private resolvedWidth(): Length {
+    return this.config.width === undefined ? this.componentWidth : this.config.width
+  }
+
+  private resolvedHeight(): Length {
+    return this.config.height === undefined ? this.componentHeight : this.config.height
+  }
+
+  private resolvedFillColor(): ResourceColor {
+    return this.config.fillColor === undefined ? this.fillColor : this.config.fillColor
+  }
+
+  private resolvedTintColor(): ResourceColor {
+    return this.config.tintColor === undefined ? this.tintColor : this.config.tintColor
+  }
+
+  private resolvedBorderColor(): ResourceColor {
+    return this.config.borderColor === undefined ? this.customBorderColor : this.config.borderColor
+  }
+
+  private resolvedCornerRadius(): number {
+    return this.config.cornerRadius === undefined ? this.cornerRadius : this.config.cornerRadius
+  }
+
+  private resolvedIconColor(): ResourceColor {
+    return this.config.color === undefined ? this.iconColor : this.config.color
+  }
+
+  private resolvedIconSize(): Length {
+    return this.config.iconSize === undefined ? this.iconSize : this.config.iconSize
+  }
+
+  private resolvedTitleFontSize(): number {
+    return this.config.titleFontSize === undefined ? this.titleFontSize : this.config.titleFontSize
+  }
+
+  private resolvedMessageFontSize(): number {
+    return this.config.subtitleFontSize === undefined ? this.messageFontSize : this.config.subtitleFontSize
+  }
+
   @Builder
   PanelContentBuilder() {
     Row({ space: SWIFT_UI_SPACING_MEDIUM }) {
       SwiftUIIconBadge({
         icon: this.icon,
-        color: this.iconColor,
-        tone: this.tone,
-        componentWidth: this.iconSize,
-        componentHeight: this.iconSize,
-        fillColor: this.fillColor,
-        tintColor: this.tintColor,
-        customBorderColor: this.customBorderColor,
-        cornerRadius: this.cornerRadius
+        color: this.resolvedIconColor(),
+        tone: this.resolvedTone(),
+        componentWidth: this.resolvedIconSize(),
+        componentHeight: this.resolvedIconSize(),
+        fillColor: this.resolvedFillColor(),
+        tintColor: this.resolvedTintColor(),
+        customBorderColor: this.resolvedBorderColor(),
+        cornerRadius: this.resolvedCornerRadius()
       })
 
       Text(this.title)
-        .fontSize(this.titleFontSize)
+        .fontSize(this.resolvedTitleFontSize())
         .fontWeight(FontWeight.Bold)
         .fontColor(SWIFT_UI_TEXT_PRIMARY)
         .layoutWeight(1)
@@ -62,7 +108,7 @@ export struct SwiftUIEmptyStateCard {
     .alignItems(VerticalAlign.Top)
 
     Text(this.message)
-      .fontSize(this.messageFontSize)
+      .fontSize(this.resolvedMessageFontSize())
       .fontColor(SWIFT_UI_TEXT_SECONDARY)
       .width('100%')
       .maxLines(4)
@@ -86,12 +132,12 @@ export struct SwiftUIEmptyStateCard {
         colors: [
           [swiftUIColorWithOpacity(this.actionColor, 0.90), 0.0],
           [swiftUIColorWithOpacity(this.actionColor, 0.78), 0.58],
-          [swiftUIColorWithOpacity(getSwiftUIGlassMaterial(this.tone).highlight, 0.34), 1.0]
+          [swiftUIColorWithOpacity(getSwiftUIGlassMaterial(this.resolvedTone()).highlight, 0.34), 1.0]
         ]
       })
       .backgroundBlurStyle(BlurStyle.Regular)
-      .borderRadius(this.cornerRadius)
-      .border({ width: 1, color: swiftUIColorWithOpacity(getSwiftUIGlassMaterial(this.tone).highlight, 0.42) })
+      .borderRadius(this.resolvedCornerRadius())
+      .border({ width: 1, color: swiftUIColorWithOpacity(getSwiftUIGlassMaterial(this.resolvedTone()).highlight, 0.42) })
       .shadow({ radius: 14, color: swiftUIColorWithOpacity(this.actionColor, 0.16), offsetX: 0, offsetY: 6 })
       .onClick(() => {
         this.onAction()
@@ -102,13 +148,13 @@ export struct SwiftUIEmptyStateCard {
   build() {
     SwiftUIPanel({
       spacing: SWIFT_UI_SPACING_MEDIUM,
-      tone: this.tone,
-      componentWidth: this.componentWidth,
-      componentHeight: this.componentHeight,
-      fillColor: this.fillColor,
-      tintColor: this.tintColor,
-      customBorderColor: this.customBorderColor,
-      cornerRadius: this.cornerRadius,
+      tone: this.resolvedTone(),
+      componentWidth: this.resolvedWidth(),
+      componentHeight: this.resolvedHeight(),
+      fillColor: this.resolvedFillColor(),
+      tintColor: this.resolvedTintColor(),
+      customBorderColor: this.resolvedBorderColor(),
+      cornerRadius: this.resolvedCornerRadius(),
       contentBuilder: () => {
         this.PanelContentBuilder()
       }
