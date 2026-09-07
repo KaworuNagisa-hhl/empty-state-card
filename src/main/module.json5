@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "empty_state_card",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}
