@@ -14,16 +14,6 @@
 ohpm install empty-state-card
 ```
 
-本地源码依赖：
-
-```json5
-{
-  "dependencies": {
-    "empty-state-card": "file:../empty-state-card",
-    "theme": "file:../theme"
-  }
-}
-```
 
 ## 正常使用样式
 

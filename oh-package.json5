@@ -1,8 +1,8 @@
 {
   "modelVersion": "6.0.2",
   "name": "empty-state-card",
-  "version": "1.0.1",
-  "description": "OpenHarmony/HarmonyOS ArkUI like-ios 毛玻璃空态卡片组件，适合空列表、无数据和引导操作场景。本次 1.0.1 补齐 homepage、example 示例目录与更清晰的 README 发布说明。",
+  "version": "1.0.2",
+  "description": "OpenHarmony/HarmonyOS ArkUI like-ios 毛玻璃空态卡片组件，适合空列表、无数据和引导操作场景。提供 homepage、example 示例目录与清晰的 README 使用说明。",
   "main": "Index.ets",
   "author": { "name": "KaworuNagisa-hhl", "url": "https://github.com/KaworuNagisa-hhl" },
   "homepage": "https://github.com/KaworuNagisa-hhl/empty-state-card",
