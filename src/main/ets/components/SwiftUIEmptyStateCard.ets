@@ -9,9 +9,9 @@ import {
   swiftUIColorWithOpacity,
   SwiftUIComponentConfig,
   SwiftUITone
-} from 'theme'
-import { SwiftUIPanel } from 'panel'
-import { SwiftUIIconBadge } from 'icon-badge'
+} from '@kaworunagisa_hhl/theme'
+import { SwiftUIPanel } from '@kaworunagisa_hhl/panel'
+import { SwiftUIIconBadge } from '@kaworunagisa_hhl/icon-badge'
 
 @Component
 export struct SwiftUIEmptyStateCard {
