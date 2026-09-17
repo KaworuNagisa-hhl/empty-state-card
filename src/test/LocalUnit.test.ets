@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium'
-import { getSwiftUIGlassMaterial } from '@kaworunagisa_hhl/theme'
+import { getSwiftUIGlassMaterial } from 'theme'
 
 export default function localUnitTest() {
   describe('SwiftUIEmptyStateCard', () => {

@@ -1,4 +1,4 @@
-import { SwiftUIEmptyStateCard } from '@kaworunagisa_hhl/empty-state-card'
+import { SwiftUIEmptyStateCard } from 'empty-state-card'
 
 @Component
 export struct SwiftUIEmptyStateCardUsage {
